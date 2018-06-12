@@ -2,9 +2,15 @@ import os
 import time
 import re
 from slackclient import SlackClient
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 # instantiate Slack client
-SLACK_TOKEN = os.environ.get('SLACK_TOKEN',None)
+SLACK_TOKEN = os.getenv('SLACK_TOKEN')
+# SLACK_TOKEN = os.environ.get('SLACK_TOKEN',None)
 slack_client = SlackClient(SLACK_TOKEN)
 # starterbot's user ID in Slack: value is assigned after the bot starts up
 starterbot_id = None
